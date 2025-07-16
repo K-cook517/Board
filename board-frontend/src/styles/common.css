@@ -1,0 +1,148 @@
+/* 기본 리셋 */
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+ul,
+li {
+   list-style: none;
+}
+a {
+   text-decoration: none;
+   color: inherit;
+}
+body {
+   font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+   background-image: url('/images/background.jpg');
+   background-size: cover;
+   background-attachment: fixed;
+   line-height: 1.6;
+}
+
+/* 전체를 감싸는 박스 */
+.wrap {
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 50px 30px;
+   background-color: rgba(255, 255, 255, 0.8);
+   min-height: 100vh;
+}
+
+/* 게시판 제목 */
+.board_title {
+   margin-bottom: 20px;
+}
+.board_title strong {
+   font-size: 2rem;
+}
+.board_title p {
+   font-size: 1rem;
+   margin-top: 5px;
+   color: #333;
+}
+
+/* 게시글 리스트 */
+.board_list_wrap {
+   margin-top: 30px;
+}
+.board_list {
+   width: 100%;
+   border-top: 2px solid #000;
+}
+.board_list > div {
+   display: flex;
+   border-bottom: 1px solid #ccc;
+   padding: 10px 5px;
+}
+.board_list .top {
+   font-weight: bold;
+   background-color: #f2f2f2;
+}
+.board_list > div > div {
+   flex: 1;
+   text-align: center;
+}
+.board_list .title {
+   flex: 5;
+   text-align: left;
+   padding-left: 10px;
+}
+.board_list .title a {
+   transition: all 0.2s;
+}
+.board_list .title a:hover {
+   text-decoration: underline;
+}
+
+/* 버튼 영역 */
+.bt_wrap {
+   margin-top: 20px;
+   text-align: right;
+}
+.bt_wrap a {
+   display: inline-block;
+   padding: 8px 16px;
+   border: 1px solid #000;
+   background: #fff;
+   color: #000;
+   border-radius: 3px;
+   font-size: 0.95rem;
+   margin-left: 8px;
+   transition: all 0.2s;
+}
+.bt_wrap a:hover {
+   background-color: #eee;
+}
+
+/* 게시글 보기 */
+.board_view_wrap {
+   margin-top: 30px;
+}
+.board_view {
+   border-top: 2px solid #000;
+}
+.board_view .info {
+   display: flex;
+   padding: 10px 0;
+   border-bottom: 1px solid #ccc;
+   font-size: 0.9rem;
+}
+.board_view .info > div {
+   margin-right: 15px;
+}
+.board_view .content {
+   padding: 20px 0;
+   min-height: 200px;
+   font-size: 1rem;
+   color: #333;
+}
+
+/* 게시글 작성 */
+.board_write_wrap {
+   margin-top: 30px;
+}
+.board_write {
+   border-top: 2px solid #000;
+}
+.board_write .title,
+.board_write .content {
+   padding: 10px 0;
+   border-bottom: 1px solid #ccc;
+}
+.board_write .title dt,
+.board_write .content dt {
+   margin-bottom: 8px;
+   font-weight: bold;
+}
+.board_write .title dd input,
+.board_write .content dd textarea {
+   width: 100%;
+   padding: 10px;
+   font-size: 1rem;
+   border: 1px solid #ccc;
+   resize: none;
+}
+.board_write .content dd textarea {
+   height: 300px;
+}
