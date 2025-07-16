@@ -4,6 +4,11 @@ module.exports = class Post extends Sequelize.Model {
    static init(sequelize) {
       return super.init(
          {
+            //게시글 제목
+            title: {
+               type: Sequelize.STRING(100),
+               allowNull: false,
+            },
             //글 내용
             content: {
                type: Sequelize.TEXT,

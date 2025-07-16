@@ -4,6 +4,7 @@ import { useState } from 'react'
 function PostCreateForm({ onPostCreate }) {
    const [imgUrl, setImgUrl] = useState('') //이미지 경로(파일명 포함)
    const [imgFile, setImgFile] = useState(null) //이미지 파일 객체
+   const [title, setTitle] = useState('') //제목
    const [content, setContent] = useState('') //게시물 내용
    const [hashtags, setHashtags] = useState('') //해시태그
 
@@ -97,6 +98,9 @@ function PostCreateForm({ onPostCreate }) {
                />
             </Box>
          )}
+
+         {/* 제목 입력 필드 */}
+         <TextField label="제목" variant="outlined" fullWidth multiline rows={1} value={title} onChange={(e) => setTitle(e.target.value)} sx={{ mt: 3 }} />
 
          {/* 게시물 내용 입력 필드 */}
          <TextField label="게시물 내용" variant="outlined" fullWidth multiline rows={4} value={content} onChange={(e) => setContent(e.target.value)} sx={{ mt: 3 }} />
