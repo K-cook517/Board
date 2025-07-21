@@ -4,6 +4,10 @@
    padding: 0;
    box-sizing: border-box;
 }
+.wrap {
+   background-color: rgba(255, 255, 255, 0.7);
+   padding: 73px 400px 150px 100px;
+}
 ul,
 li {
    list-style: none;
