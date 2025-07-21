@@ -24,10 +24,10 @@ module.exports = class Hashtag extends Sequelize.Model {
       )
    }
    static associate(db) {
-      db.Hashtag.belongsToMany(db.Post, {
-         through: 'PostHashtag',
+      db.Hashtag.belongsToMany(db.Board, {
+         through: 'BoardHashtag',
          foreignKey: 'hashtag_id', //교차테이블에서 Hashtag 모델의 FK
-         otherKey: 'post_id', //Post 모델의 FK
+         otherKey: 'board_id', //Board 모델의 FK
       })
    }
 }

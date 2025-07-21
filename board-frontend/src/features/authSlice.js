@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { checkAuthStatus, loginMember, logoutMember, registerUser } from '../api/boardApi'
+import { checkAuthStatus, loginMember, logoutMember, registerMember } from '../api/boardApi'
 
 //회원가입
-export const registerUserThunk = createAsyncThunk('auth/registerUser', async (memberData, { rejectWithValue }) => {
+export const registerMemberThunk = createAsyncThunk('auth/registerMember', async (memberData, { rejectWithValue }) => {
    try {
-      const response = await registerUser(memberData)
+      const response = await registerMember(memberData)
       return response.data.member
    } catch (error) {
       return rejectWithValue(error.response?.data?.message)
@@ -58,15 +58,15 @@ const authSlice = createSlice({
    extraReducers: (builder) => {
       builder
          // 회원가입
-         .addCase(registerUserThunk.pending, (state) => {
+         .addCase(registerMemberThunk.pending, (state) => {
             state.loading = true
             state.error = null
          })
-         .addCase(registerUserThunk.fulfilled, (state, action) => {
+         .addCase(registerMemberThunk.fulfilled, (state, action) => {
             state.loading = false
             state.member = action.payload
          })
-         .addCase(registerUserThunk.rejected, (state, action) => {
+         .addCase(registerMemberThunk.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
          })

@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize')
 
-module.exports = class Post extends Sequelize.Model {
+module.exports = class Board extends Sequelize.Model {
    static init(sequelize) {
       return super.init(
          {
             //게시글 제목
             title: {
-               type: Sequelize.STRING(100),
+               type: Sequelize.TEXT,
                allowNull: false,
             },
             //글 내용
@@ -24,8 +24,8 @@ module.exports = class Post extends Sequelize.Model {
             sequelize,
             timestamps: true,
             underscored: false,
-            modelName: 'Post',
-            tableName: 'posts',
+            modelName: 'Board',
+            tableName: 'boards',
             paranoid: true,
             charset: 'utf8mb4',
             collate: 'utf8mb4_general_ci',
@@ -33,13 +33,13 @@ module.exports = class Post extends Sequelize.Model {
       )
    }
    static associate(db) {
-      db.Post.belongsTo(db.Member, {
+      db.Board.belongsTo(db.Member, {
          foreignKey: 'member_id',
          targetKey: 'id',
       })
-      db.Post.belongsToMany(db.Hashtag, {
-         through: 'PostHashtag',
-         foreignKey: 'post_id', //교차테이블에서 Post 모델의 FK
+      db.Board.belongsToMany(db.Hashtag, {
+         through: 'BoardHashtag',
+         foreignKey: 'board_id', //교차테이블에서 Board 모델의 FK
          otherKey: 'hashtag_id', //Hashtag 모델의 FK
       })
    }

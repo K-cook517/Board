@@ -36,7 +36,7 @@ function Navbar({ isAuthenticated, member }) {
             {isAuthenticated ? (
                //로그아웃
                <>
-                  <Link to="/posts/create">
+                  <Link to="/boards/create">
                      <IconButton aria-label="글쓰기">
                         <CreateIcon />
                      </IconButton>

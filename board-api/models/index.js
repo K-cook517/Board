@@ -3,23 +3,23 @@ const env = process.env.NODE_ENV || 'development'
 const config = require('../config/config')[env]
 
 const Member = require('./member')
-const Post = require('./post')
+const Board = require('./board')
 const Hashtag = require('./hashtag')
 
 const db = {}
-const sequelize = new Sequelize(config.database, config.username, config.password, config)
+const sequelize = new Sequelize(config.database, config.Membername, config.password, config)
 
 db.sequelize = sequelize
 db.Member = Member
-db.Post = Post
+db.Board = Board
 db.Hashtag = Hashtag
 
 Member.init(sequelize)
-Post.init(sequelize)
+Board.init(sequelize)
 Hashtag.init(sequelize)
 
 Member.associate(db)
-Post.associate(db)
+Board.associate(db)
 Hashtag.associate(db)
 
 module.exports = db

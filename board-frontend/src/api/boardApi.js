@@ -12,7 +12,7 @@ const boardApi = axios.create({
 })
 
 //회원가입
-export const registerUser = async (memberData) => {
+export const registerMember = async (memberData) => {
    try {
       //memberData: 회원가입 창에서 입력한 데이터
       //localhost:8000/auth/join
@@ -64,27 +64,30 @@ export const checkAuthStatus = async () => {
 }
 
 //포스트 등록
-export const createPost = async (postData) => {
+export const createBoard = async (boardData) => {
    try {
-      console.log('postData: ', postData)
+      //postData:등록할 게시물 데이터가 담겨져있는 formData 객체
+      console.log('boardData: ', boardData)
 
+      //서버에 파일 전송시 반드시 해야하는 headers 설정
       const config = {
          headers: {
             'Content-Type': 'multipart/form-data', // 파일 전송시 반드시 지정
          },
       }
 
-      const response = await boardApi.post('/post', postData, config)
+      const response = await boardApi.post('/post', boardData, config)
       return response
    } catch (error) {
       console.error(`API Request 오류: ${error}`)
       throw error
    }
 }
+
 //포스트 수정
-export const updatePost = async (id, postData) => {
+export const updateBoard = async (id, boardData) => {
    try {
-      //id: post의 id, postData: 수정할 게시물 데이터가 있는 객체
+      //id: board의 id, postData: 수정할 게시물 데이터가 있는 객체
 
       //서버에 파일 전송 시 반드시 해야하는 headers 설정
       const config = {
@@ -93,7 +96,7 @@ export const updatePost = async (id, postData) => {
          },
       }
 
-      const response = await boardApi.put(`/post/${id}`, postData, config)
+      const response = await boardApi.put(`/post/${id}`, boardData, config)
       return response
    } catch (error) {
       console.error(`API Request 오류: ${error}`)
@@ -102,7 +105,7 @@ export const updatePost = async (id, postData) => {
 }
 
 //포스트 페이징 가져오기
-export const getPosts = async (page) => {
+export const getBoards = async (page) => {
    try {
       //page: 페이지 번호
       const response = await boardApi.get(`/post?page=${page}`)
@@ -114,10 +117,21 @@ export const getPosts = async (page) => {
 }
 
 //특정 포스트 가져오기
-export const getPostById = async (id) => {
+export const getBoardById = async (id) => {
    try {
-      // id: 특정 post 의 id(PK)
+      // id: 특정 board 의 id(PK)
       const response = await boardApi.get(`/post/${id}`)
+      return response
+   } catch (error) {
+      console.error(`API Request 오류: ${error}`)
+      throw error
+   }
+}
+
+//포스트 삭제
+export const deleteBoard = async (id) => {
+   try {
+      const response = await boardApi.delete(`/post/${id}`)
       return response
    } catch (error) {
       console.error(`API Request 오류: ${error}`)

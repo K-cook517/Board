@@ -12,9 +12,9 @@ const indexRouter = require('./routes')
 const authRouter = require('./routes/auth')
 const postRouter = require('./routes/post')
 const pageRouter = require('./routes/page')
-const memberRouter = require('./routes/member')
-const { sequelize } = require('./models') //index.js
+const userRouter = require('./routes/member')
 const passportConfig = require('./passport')
+const { sequelize } = require('./models') //index.js
 
 const app = express()
 passportConfig() //passport 실행
@@ -66,7 +66,7 @@ app.use('/', indexRouter) //localhost:8000/
 app.use('/auth', authRouter) //localhost:8000/auth
 app.use('/post', postRouter) //localhost:8000/post
 app.use('/page', pageRouter) //localhost:8000/page
-app.use('/member', memberRouter) //localhost:8000/member
+app.use('/member', userRouter) //localhost:8000/member
 
 //잘못된 라우터 경로 처리
 app.use((req, res, next) => {

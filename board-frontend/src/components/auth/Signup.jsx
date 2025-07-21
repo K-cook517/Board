@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { clearAuthError, registerUserThunk } from '../../features/authSlice'
+import { clearAuthError, registerMemberThunk } from '../../features/authSlice'
 
 function Signup() {
    const [email, setEmail] = useState('') //이메일
@@ -36,7 +36,7 @@ function Signup() {
          alert('비밀번호가 일치하지 않습니다!')
          return
       }
-      dispatch(registerUserThunk({ email, nick, password }))
+      dispatch(registerMemberThunk({ email, nick, password }))
          .unwrap()
          .then(() => {
             //회원가입 성공시

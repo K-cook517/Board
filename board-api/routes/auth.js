@@ -8,16 +8,7 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares')
 
 //회원가입 (localhost:8000/auth/join)
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
-   console.log('----- 회원가입 요청 수신 -----')
-   console.log('req.body:', req.body)
-
-   const { email, nick, password } = req.body
-
-   console.log('email:', email)
-   console.log('nick:', nick)
-   console.log('password:', password)
    try {
-      //이메일로 기존 멤버 검색
       console.log(req.body)
       const { email, nick, password } = req.body
       const exMember = await Member.findOne({
@@ -25,7 +16,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
       })
       //같은 이메일이면 409 상태코드 찍고 메세지 전달
       if (exMember) {
-         const error = new Error('이미 존재하는 멤버입니다.')
+         const error = new Error('이미 존재하는 사용자입니다.')
          error.status = 409 // Conflict
          return next(error) //에러 미들웨어 이동
       }
@@ -57,7 +48,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
    } catch (error) {
       // 에러발생시 미들웨어로 전달
       error.status = 500
-      error.message = '가입 중 오류가 발생했습니다.'
+      error.message = '회원가입 중 오류가 발생했습니다.'
       next(error)
    }
 })
@@ -120,8 +111,8 @@ router.get('/status', async (req, res, next) => {
          res.status(200).json({
             isAuthenticated: true,
             member: {
-               id: req.member.id,
-               nick: req.member.nick,
+               id: req.user.id,
+               nick: req.user.nick,
             },
          })
       } else {

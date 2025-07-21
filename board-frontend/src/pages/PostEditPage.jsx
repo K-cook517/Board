@@ -1,24 +1,24 @@
 import { Container } from '@mui/material'
-import PostEditForm from '../components/post/PostEditForm'
+import BoardEditForm from '../components/post/BoardEditForm'
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchPostByIdThunk, updatePostThunk } from '../features/postSlice'
+import { fetchBoardByIdThunk, updateBoardThunk } from '../features/boardSlice'
 
-function PostEditPage() {
+function BoardEditPage() {
    const navigate = useNavigate()
    const dispatch = useDispatch()
    const { id } = useParams() //post의 id를 path 파라메터에서 가져옴
-   const { post, loading, error } = useSelector((state) => state.posts)
+   const { board, loading, error } = useSelector((state) => state.boards)
 
    //게시물 데이터 불러오기
    useEffect(() => {
-      dispatch(fetchPostByIdThunk(id))
+      dispatch(fetchBoardByIdThunk(id))
    }, [dispatch, id])
 
    //게시물 수정
-   const onPostEdit = (postData) => {
-      dispatch(updatePostThunk({ id, postData }))
+   const onBoardEdit = (boardData) => {
+      dispatch(updateBoardThunk({ id, boardData }))
          .unwrap()
          .then(() => {
             navigate('/') //게시물 수정 후 메인페이지로 이동
@@ -34,9 +34,9 @@ function PostEditPage() {
    return (
       <Container maxWidth="md">
          <h1>게시물 수정</h1>
-         {post && <PostEditForm onPostEdit={onPostEdit} initialValues={post} />}
+         {board && <BoardEditForm onBoardEdit={onBoardEdit} initialValues={board} />}
       </Container>
    )
 }
 
-export default PostEditPage
+export default BoardEditPage
